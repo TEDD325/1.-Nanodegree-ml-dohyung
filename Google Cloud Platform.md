@@ -8,7 +8,7 @@
 
 ## 호스트
 
-네트워크에 연결되어 있는 통신 가능한 모든 장치
+네트워크에 연결되어 있는 통신 가능한 모든 컴퓨터
 
 ## 인스턴스
 
@@ -86,7 +86,7 @@ Google Cloud Platform
 ## Compute Engine
 
 클라우드에서 서버 컴퓨터를 구축할 때 사용하는 서비스
-다양한 옵션의 가상 머신(VM) 서비스를 제공한다. -> 개발자의 필요에 맞는 컴퓨팅 환경을 구축할 수 있다.
+다양한 옵션의 가상 머신(VM) 서비스를 제공한다. → 개발자의 필요에 맞는 컴퓨팅 환경을 구축할 수 있다.
 
 ## Cloud SQL
 
@@ -128,7 +128,7 @@ Google Cloud Platform에서 제공하는 도커 컨테이너 이미지 저장 �
 
 회사 코드 등의 민감한 코드를 public 도커 레포에 올리는 것 대신에 사용할 수 있다.
 
-# GCP 개발 환경 구성
+# GCP 인스턴스 개발 환경 구성
 
 ## 가입 및 설정
 
@@ -146,7 +146,7 @@ Google Cloud Platform에서 제공하는 도커 컨테이너 이미지 저장 �
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%202.png)
 
-- 카드 정보를 입력하더라도 청구되지 않음
+- 카드 정보를 입력하더라도 크레딧이 다할 때까지 청구되지 않음
 - **한글 이름으로 작성해야 함**
 
 ---
@@ -177,9 +177,9 @@ Google Cloud Platform에서 제공하는 도커 컨테이너 이미지 저장 �
 
 ---
 
-![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%207.png)
-
 ## Compute Engine을 이용하여 서버 생성
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%207.png)
 
 **Compute Engine → VM인스턴스 → 인스턴스 만들기**
 
@@ -271,7 +271,7 @@ SSH 접속을 허용하여 접근하면 위와 같이 뜬다.
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2017.png)
 
-External IP는 해당 VM 인스턴스 외부에서 접근할 수 있는 IP주소로서, SSH 접근 시 필요하다.
+External IP는 해당 VM 인스턴스의 외부에서 접근할 수 있는 IP주소로서, SSH 접근 시 필요하다.
 
 ---
 
@@ -312,7 +312,7 @@ ssh-keygen -t rsa -f ~/.ssh/*dohk325-gcp-01* -C *ubuntu* -b 2048
 
 dohk325-gcp-01**.pub**: 공개키 파일
 
-dohk325-gcp-01: .pub 확장자가 붙지 않은 파일은 비밀키로서 공유되어선 안됨
+dohk325-gcp-01: .pub 확장자가 붙지 않은 파일은 비밀키로서 통신하고자 하는 서버 외에는 공유되어선 안됨
 
 서버로의 요청 시엔 비밀키로 암호화되어 서버로 요청이 전달된다.
 
@@ -330,18 +330,18 @@ dohk325-gcp-01: .pub 확장자가 붙지 않은 파일은 비밀키로서 공유
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2025.png)
 
-앞서 **복사해 둔 SSH 공개키를 붙여넣는다.** → 서버에 공개키를 제공하는 것으로서, SSH 통신이 가능하게 한다.
+앞서 **복사해 둔 SSH 공개키를 붙여넣는다.** → 서버에 공개키를 제공하는 것으로서, 이로써 SSH 통신이 가능해진다.
 
 ---
 
-이제 터미널에서 xternal IP 정보로 해당 GCP VM 인스턴스에 SSH로 접속해보자.
+이제 터미널에서 External IP 정보로 해당 GCP VM 인스턴스에 SSH로 접속해보자.
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2026.png)
 
 <aside>
-💡 .pub 파일로는 애초에 접속이 허용조차 안 된다.
+💡 비밀키가 아닌 공개키(.pub 파일)로는 애초에 접속이 허용조차 안 된다.
 
-서버는 클라이언트가 제공한 공개키와 일치하는 개인키를 가진 클라이언트에게만 접속을 허용하기 때문이다.
+서버는 클라이언트가 제공한 공개키와 일치하는 개인키(비밀키)를 가진 클라이언트에게만 접속을 허용하기 때문이다.
 
 </aside>
 
@@ -449,6 +449,8 @@ $ poetry init
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2036.png)
 
+불필요한 파일은 지워준다.
+
 ---
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2037.png)
@@ -477,7 +479,7 @@ Next
 
 Conda Environment → Use existing environment → mle_course
 
-Sync folders는 서버 상의 원하는 경로를 지정
+Sync folders는 서버 상의 원하는 경로를 지정한다.
 
 ---
 
@@ -485,12 +487,416 @@ Sync folders는 서버 상의 원하는 경로를 지정
 
 ## GCP 인스턴스 SUSPEND하기(필수)
 
-사용하지 않는 시간의 크레딧 낭비를 최소화하기 위해서는 인스턴스를 SUSPEND시켜야 한다.
-
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2043.png)
+
+사용하지 않는 시간의 크레딧 낭비를 최소화하기 위해서, 서버를 항상 켜둬야하지 않아도 되면 인스턴스를 SUSPEND시켜야 한다.
 
 ![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2044.png)
 
 정지시키면 위와 같이 노란색의 라디오 박스로 STATUS가 변경된다.
 
-단, SUSPEND하고 다시 재개하면 External IP 주소가 변경됨에 주의한다.
+단, SUSPEND하고 다시 재개하면 External IP 주소가 변경되므로, 다음의 연결 시에 변경된 주소로 접속해야 함에 유의한다.
+
+# GCP 데이터베이스 개발 환경 구성
+
+## DBMS
+
+DataBase Management System
+
+### 데이터베이스 마이그레이션
+
+마이그레이션은 옮긴다는 의미다. 
+
+on-premise 환경 또는 A 클라우드에서 B 클라우드로 데이터베이스를 옮길 경우 이를 ‘마이그레이션 한다’고 한다.
+
+*On-premise: 자체적인 것
+
+클라우드를 사용하는 경우라면 스냅샷과 같은 기능으로 DBMS의 특정 시점을 저장한 뒤, 해당 스냅샷으로 다른 DBMS로 옮기는 것이 가능하다.
+
+이 노트에서는 PostgreSQL을 사용한다.
+
+## RDBMS
+
+Relational DBMS
+
+테이블 간의 관계를 사용하여 데이터를 구성하고 쿼리하는 데 사용되는 데이터베이스
+
+SQL(Structured Query Language)을 사용하여 데이터를 조작하고 검색할 수 있다.
+
+### PostgreSQL
+
+관계형 데이터베이스 관리 시스템(RDBMS) 중 하나
+
+대규모의 데이터베이스 환경에서 안정적으로 사용된다.
+
+오픈 소스이며, 무료로 사용할 수 있다.
+
+다양한 고급 기능을 제공하여 데이터베이스 관리를 용이하게 한다.
+
+CRUD 자체의 기능이 중요하거나, 안정적인 서비스를 원한다면 MySQL을 써야 한다.
+
+ACID(Atomicity, Consistency, Isolation, Durability) 트랜잭션을 지원하여 데이터의 일관성, 무결성, 격리성 및 지속성을 보장한다. → 데이터베이스에서 안전하게 작업을 수행하고 데이터 손실을 방지할 수 있다.
+
+**psql**
+
+- PostgreSQL DBMS(서버)와 통신할 때 사용하는 Postgres 클라이언트 프로그램
+- DBMS에 접속하여 SQL을 사용할 때 쓰인다.
+
+**pg_dump**
+
+- PostgreSQL DBMS를 백업하는 방법 중 하나
+- postgres client의 dump 기능을 사용
+- 데이터베이스에 있는 내용을 전부 파일로 만들어 저장한다.
+- 압축 또는, 여러 파일로 쪼개어 저장할 수 있다.
+
+**pg_restore**
+
+- pg_dump로 백업한 데이터베이스를 복원할 때 사용하는 프로그램
+
+## Cloud SQL
+
+클라우드에서 데이터베이스를 구축할 때 사용하는 서비스
+
+MySQL, PostgreSQL 등 다양한 데이터베이스 구성 가능
+
+데이터베이스 엔진을 완전 관리형 서비스*로 제공한다. → 개발자가 데이터베이스 관리에 대한 부담을 줄일 수 있어서, 애플리케이션 개발에만 집중할 수 있게 된다.
+
+***완전 관리형 서비스**
+
+서버의 DB 설정을 GCP가 알아서 해주는 것
+
+Cloud SQL은 데이터베이스 엔진의 설치, 설정, 유지 관리, 백업 등을 자동으로 처리한다. → 개발자가 데이터베이스 관리에 대한 부담을 줄일 수 있다.
+
+개발자는 필요할 경우 데이터베이스에 대한 설정을 변경하거나 모니터링 할 수 있지만, 기본적인 운영 관리는 Google이 수행한다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2045.png)
+
+GCP console에서 상단에 sql을 친다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2046.png)
+
+PostgreSQL을 선택한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2047.png)
+
+인스턴스 ID를 적절히 설정하고, 비밀번호를 설정한다. 데이터베이스 버전은 최신 버전보다 한 단계 낮은 버전인 14버전을 쓴다. Cloud SQL 버전은 Enterprise를 선택한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2048.png)
+
+버전의 사전 설정은 ‘개발’로, 리전은 ‘서울’로, 영역 가용성은 ‘단일 영역’으로 선택한다. 안정성을 위해 서버의 다원화를 목적으로 여러 영역을 선택할 수도 있다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2049.png)
+
+머신구성은 ‘공유 코어’, ‘1개의 vCPU, ‘1.7GB 메모리’, 저장용량은 ‘SSD’, ‘10GB’로 한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2050.png)
+
+연결은 일단은 ‘공개 IP’로 한다. 
+
+DB는 사실은 현업에서는 비공개 IP로 해서 막아놔야 한다. 대신 VPN등으로 접속하는 방식을 사용해야 한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2051.png)
+
+데이터 보호 항목은 수정할 사항은 딱히 없다. 단, ‘삭제 보호 사용 설정’은 필수다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2052.png)
+
+유지보수는 데이터베이스가 여러 개일 때 의미가 있는데, 데이터베이스를 이/삼중화 설정할 때, 두 DB의 유지보수 기간을 다르게 하여 서비스가 끊기지 않게 유지하게 하는 역할을 한다.
+
+ML Engineer가 건들일은 거의 없지만 작은 회사라면 다룰 수도 있다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2053.png)
+
+예상 가격을 확인한 후, 
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2054.png)
+
+인스턴스를 생성한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2055.png)
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2056.png)
+
+DB역시 VM 인스턴스와 마찬가지로 사용하지 않을 땐 SUSPEND 해놓아야 크레딧이 낭비되지 않는다. 단, 역시나 공개 IP가 바뀔 수 있음에 유의한다.
+
+## 데이터베이스 클라이언트
+
+### DBeaver 클라이언트
+
+데이터베이스 접속을 위해서 DBeaver를 사용한다.
+
+- [https://dbeaver.io/download/](https://dbeaver.io/download/)
+
+먼저, 콘솔의 SQL → 개요에 나와있는 공개 IP 주소를 확인해야 한다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2057.png)
+
+IP 주소를 복사한다.
+
+---
+
+DBeaver를 실행하고
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2058.png)
+
+데이터베이스 종류를 PostgreSQL을 선택한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2059.png)
+
+필요한 정보들(Host, Port, Database, Username, Password)을 입력하고 ‘Test Connection …’을 누른다.
+
+처음 접속할 경우 필요한 드라이버를 다운로드하여 설치할 필요가 있다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2060.png)
+
+하지만 첫 Test Connection시 접속이 안되는데, DB의 경우엔 보안이 중요해서, 한 번 더 접근 가능하도록 허용하는 작업이 필요하다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2061.png)
+
+첫번째로, SQL Admin API를 허용해줘야 한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2062.png)
+
+다음으로, GCP 콘솔로 이동하여, 승인된 네트워크에 ‘네트워크 추가’를 선택해야 한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2063.png)
+
+이 실습 노트에서는 0.0.0.0/0으로 설정한다. 이는 모든 네트워크 접속을 허용한다는 의미다. 
+
+실제 현업에서는 특정 IP 범위만을 허용하도록 해야한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2064.png)
+
+추가된 네트워크를 확인한 후 ‘저장’을 누른다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2065.png)
+
+DBeaver 클라이언트로 돌아와서 다시 ‘Test Connection …’을 누르면 연결되는 것을 확인할 수 있다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2066.png)
+
+접속하면 처음에는 postgresql이라는 데이터베이스가 존재할텐데, 이를 ‘MLE_course’로 바꾸었다. 
+
+---
+
+### PyCharm Database 클라이언트
+
+PyCharm 프로버전에도 Database 클라이언트가 내장되어 있다. PyCharm에서 진행해보겠다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2067.png)
+
+Database → [+] → Data Source → PostgreSQL → PostgreSQL
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2068.png)
+
+GCP 콘솔에서 연결 정보를 확인하고,
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2069.png)
+
+필요한 정보들을 기입한 다음, ‘Download missing driver files’를 클릭하여 DBeaver와 마찬가지로 드라이버를 다운로드한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2070.png)
+
+그 다음 ‘Test Connection’을 클릭하면 ‘Succeeded’가 뜬 것을 확인할 수 있다. OK를 누른다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2071.png)
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2072.png)
+
+그 다음 서버에서의 작업이 필요하다.
+
+먼저, 우분투 패키지 관리자(apt)로 기존 패키지들 업데이트 및 업그레이드한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2073.png)
+
+우분투 repository에는 이 세상 모든 패키지의 리스트가 없지는 않다. 필요한 패키지는 해당 레포에서 다운로드 및 설치가 필요한데, postgressql이 그러하다.
+
+우리는 서버의 DB가 클라이언트와 통신할 수 있게 하기 위해, 서버에 PostgreSQL DBMS를 설치해야 한다. 
+
+아래 사이트로 접속하면 위와 같은 스크립트가 나온다. 이를 그대로 라인바이라인으로 터미널에 입력한다.
+
+[https://ethanmick.com/how-to-install-and-setup-postgresql-14-on-ubuntu-20-04/](https://ethanmick.com/how-to-install-and-setup-postgresql-14-on-ubuntu-20-04/)
+
+```bash
+# Create the file repository configuration:
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+# Update the package lists:
+sudo apt-get update
+
+# Install the latest version of PostgreSQL.
+# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+sudo apt-get -y install postgresql-14
+```
+
+실은 PostgreSQL DBMS를 다운 및 설치하면 자동적으로 PostgreSQL 클라이언트도 다운 및 설치된다. 즉, 위 명령으로 psql, pg_dump, pg_restore도 함께 설치된다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2074.png)
+
+따라서, 위와 같이 명령어를 입력하면 제대로 동작하는 것을 볼 수 있다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2075.png)
+
+서버에서 psql로 데이터베이스 접속하기 위해 명령을 던진다.
+
+위와 같이 뜨면 성공
+
+- h: host
+- U: user
+- p: port
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2076.png)
+
+- `\d`: 테이블 조회
+- `\l`: 데이터베이스 리스트 조회
+- `\?`: help
+- `\q`: quit
+
+---
+
+## 데이터베이스 마이그레이션: pg_dump & pg_restore
+
+이제 외부의 데이터베이스를 우리의 데이터베이스로 마이그레이션 해보겠다.
+
+이 노트에선 pg_dump 대신, 이미 public으로 공개된 데이터베이스를 다운로드 받은 후 pg_restore할 예정이다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2077.png)
+
+실습용 DB를 다운하기 위해 아래의 사이트로 접속하여 데이터베이스 링크를 복사한다.
+
+[https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/)
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2078.png)
+
+---
+
+wget 명령으로 이 링크를 입력하면 dvdrental.zip 파일이 다운로드 된다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2079.png)
+
+zip 형식의 파일을 우분투에서 unzip하려면 unzip 패키지가 필요하다. 위와 같이 설치한다.
+
+---
+
+파일이 매우 많은 경우, 통신 시 각 파일에 접근해야 한다. 파일이 단 하나라면 왔다갔다하는 연산을 줄일 수 있다.
+
+이 때 tar 형식을 사용한다. tar는 압축이 아니라 여러 파일을 묶은 것이다.
+
+이제 서버에서 다운로드 받은 해당 데이터베이스를 마이그레이션 시켜보자.
+
+DBeaver 클라이언트에서 아래와 같이 수행한다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2080.png)
+
+Database → Create New Database로 새로운 데이터베이스를 만든다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2081.png)
+
+위와 같이 설정한다.
+
+Tablespce를 Default로 하는 이유는 실제 물리적으로 저장가능한 스토리지를 따로 나눠놓기 위함이다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2082.png)
+
+생성한 데이터베이스가 목록에 보인다.
+
+---
+
+PyCharm에서도 마찬가지로 작업할 수 있다.
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2083.png)
+
+데이터베이스를 만들고,
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2084.png)
+
+DB 이름을 DBeaver에서 만든 것과 구분하기 위해 다르게 설정해준다.
+
+---
+
+이제 마이그레이션을 위해 서버에서 작업이 필요하다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2085.png)
+
+```bash
+pg_restore -h [IP] -p [port] -U [user] -d [db name] [db path]
+```
+
+pg_resotre 명령으로 서버에 다운로드한 데이터베이스를 마이그레이션한다. 
+
+특히, `[db name]`에는 방금 전에 만든 데이터베이스 이름을 적어놓아야 한다.
+
+---
+
+![Untitled](Google%20Cloud%20Platform%20eddd37624f314662a47e2f82c4c6ecd8/Untitled%2086.png)
+
+성공적으로 마이그레이션된 것을 확인할 수 있다.
+
+---
