@@ -1,4 +1,4 @@
-# 데이터 전처리
+# Data Preprocessing
 
 데이터 전처리는 모델 학습 전에 수행된다.
 
@@ -120,7 +120,7 @@ data.shape # (301, 58)
 
 ## NaN값 여부 확인
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled.png)
 
 이 데이터는 SQL을 이용하여 outer join이 일어난 결과물로 추정된다. 이 NaN 값들을 어떻게 채워야 할까?
 
@@ -145,7 +145,7 @@ data.drop(columns=['OC'], inplace=True)
 
 각 변수별 평균, 표준편차, 최대, 최소, 사분위수 등의 기초 통계량을 확인한다. 이를 통해 어떤 데이터가 이상한지 판단할 수 있다. 
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%201.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%201.png)
 
 ## info()
 
@@ -155,7 +155,7 @@ info() 메서드로 각 변수들의 자료형을 확인할 수 있다.
 data.info()
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%202.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%202.png)
 
 변수에는 수치형 변수와 범주형 변수가 있다. object 타입을 가진 컬럼들은 모두 범주형 변수다. 이들은 구분되어 전처리가 진행된다.
 
@@ -165,7 +165,7 @@ data.info()
 label.info()
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%203.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%203.png)
 
 만약 trainset과 testset으로 이미 나눈 상태라면, 이들에 대해 info()를 모두 적용해야 한다.
 
@@ -176,7 +176,7 @@ cat_columns = data.select_dtypes(include='object').columns # 범주형 변수
 num_columns = data.select_dtypes(exclude='object').columns # 수치형 변수
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%204.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%204.png)
 
 위 코드는 범주형 변수와 수치형 변수를 구분하여 컬럼 이름만을 뽑아내는 코드다.
 
@@ -221,7 +221,7 @@ numeric_data = data[num_columns].values # 이렇게 항상 numpy array로 하지
 numeric_data
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%205.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%205.png)
 
 ## min-max scaling
 
@@ -262,9 +262,9 @@ data[num_columns].head()
 scaled_data.head()
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%206.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%206.png)
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%207.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%207.png)
 
 ---
 
@@ -272,7 +272,7 @@ scaled_data.head()
 scaled_data.describe()
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%208.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%208.png)
 
 스케일링 된 데이터는 위와 같이 min값은 0, max값은 1이 된다.
 
@@ -307,7 +307,7 @@ scaled_data = pd.DataFrame(scaled_data, columns=num_columns)
 data[num_columns].head()
 ```
 
-![스탠다드 스케일링 적용 전 데이터](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%209.png)
+![스탠다드 스케일링 적용 전 데이터](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%209.png)
 
 스탠다드 스케일링 적용 전 데이터
 
@@ -315,7 +315,7 @@ data[num_columns].head()
 scaled_data.head()
 ```
 
-![스탠다드 스케일링 적용 후 데이터](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2010.png)
+![스탠다드 스케일링 적용 후 데이터](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2010.png)
 
 스탠다드 스케일링 적용 후 데이터
 
@@ -323,7 +323,7 @@ scaled_data.head()
 data[num_columns].describe()
 ```
 
-![스탠다드 스케일링 적용 전 기초통계량](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2011.png)
+![스탠다드 스케일링 적용 전 기초통계량](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2011.png)
 
 스탠다드 스케일링 적용 전 기초통계량
 
@@ -331,7 +331,7 @@ data[num_columns].describe()
 scaled_data.describe()
 ```
 
-![스탠다드 스케일링 적용 후 기초통계량](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2012.png)
+![스탠다드 스케일링 적용 후 기초통계량](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2012.png)
 
 스탠다드 스케일링 적용 후 기초통계량
 
@@ -356,7 +356,7 @@ scaled_data.describe()
 scaled_data['revenue2'].hist(bins=20) 
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2013.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2013.png)
 
 현재 데이터 분포는 롱테일을 가진다. 
 
@@ -369,7 +369,7 @@ scaled_data['log_revenue2'] = np.log1p(data['revenue2'])
 scaled_data['log_revenue2'].hist(bins=50)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2014.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2014.png)
 
 앞서 본 데이터 분포에 Log transformation를 적용하면 위와 같이 나온다. 무엇이 잘못된걸까? 0값이 지나치게 많은 상황이라, 0을 제외하고 보아야 한다.
 
@@ -377,7 +377,7 @@ scaled_data['log_revenue2'].hist(bins=50)
 scaled_data['log_revenue2'].loc[scaled_data['log_revenue2'] > 0].hist(bins=50) # 그나마 모여있는게 좋다.
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2015.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2015.png)
 
 위와 같이 정규분포의 모양에 가까워졌다는 것을 확인할 수 있다.
 
@@ -398,7 +398,7 @@ scaled_data['box_cox_revenue2'] = trans.fit_transform(scaled_data['revenue2'].va
 scaled_data['box_cox_revenue2'].hist(bins=40)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2016.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2016.png)
 
 ## Yeo-Johnson transformation
 
@@ -413,7 +413,7 @@ scaled_data['yeo_johnson_revenue2'] = trans.fit_transform(scaled_data['revenue2'
 scaled_data['yeo_johnson_revenue2'].hist(bins=40)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2017.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2017.png)
 
 ## Quantile transformation
 
@@ -430,7 +430,7 @@ scaled_data['quantile_revenue2'] = trans.fit_transform(scaled_data['revenue2'].v
 scaled_data['quantile_revenue2'].hist(bins=40)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2018.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2018.png)
 
 ## trainset, testset 모두에 적용하는가? YES
 
@@ -444,7 +444,7 @@ trainset 뿐만 아니라, testset에도 마찬가지로 각 feature에 대해 �
 
 ![[https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html#sphx-glr-auto-examples-preprocessing-plot-map-data-to-normal-py](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html#sphx-glr-auto-examples-preprocessing-plot-map-data-to-normal-py)
 
-각 변환마다 결과가 조금씩 다른 것을 볼 수 있다.](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2019.png)
+각 변환마다 결과가 조금씩 다른 것을 볼 수 있다.](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2019.png)
 
 [https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html#sphx-glr-auto-examples-preprocessing-plot-map-data-to-normal-py](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_map_data_to_normal.html#sphx-glr-auto-examples-preprocessing-plot-map-data-to-normal-py)
 
@@ -476,7 +476,7 @@ trainset 뿐만 아니라, testset에도 마찬가지로 각 feature에 대해 �
 pd.isna(data)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2020.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2020.png)
 
 이에 대해 `sum()` 메서드를 적용해나가면 null값 체크가 쉬워진다. Pandas의`sum()`메서드는 자체적으로 값을 숫자로 바꿀 수 있는지 판단한 후, 값을 바꾸어 연산을 진행하기 때문이다.
 
@@ -484,7 +484,7 @@ pd.isna(data)
 pd.isna(data).sum()
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2021.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2021.png)
 
 ```python
 pd.isna(data).sum().sum() # 425
@@ -497,7 +497,7 @@ from missingno import matrix
 matrix(data)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2022.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2022.png)
 
 ## 수치형 변수의 결측치에 대한 처리
 
@@ -630,7 +630,7 @@ label = pd.DataFrame(data['OC'])
 label.head() # 모델은 숫자를 요구한다.
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2023.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2023.png)
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -663,7 +663,7 @@ result.sort_values('label_encoded', inplace=True) # 특정 컬럼을 기준으�
 result.head(20) # close가 개수가 적은 imbalanced 데이터다.
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2024.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2024.png)
 
 ## One-Hot Encoding
 
@@ -748,7 +748,7 @@ result = pd.concat([label, ohe_df], axis=1)
 result.head(10)
 ```
 
-![Untitled](%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%20%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%20eb7a0990c3344d32922f9a09055b3501/Untitled%2025.png)
+![Untitled](Data%20Preprocessing%20eb7a0990c3344d32922f9a09055b3501/Untitled%2025.png)
 
 ## Ordinal Encoding
 
